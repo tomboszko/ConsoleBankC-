@@ -1,0 +1,15 @@
+C:\TOM\CODE\GITHUB\repo\ConsoleBankC-\bank\bin\Debug\net8.0\bank.exe
+C:\TOM\CODE\GITHUB\repo\ConsoleBankC-\bank\bin\Debug\net8.0\bank.deps.json
+C:\TOM\CODE\GITHUB\repo\ConsoleBankC-\bank\bin\Debug\net8.0\bank.runtimeconfig.json
+C:\TOM\CODE\GITHUB\repo\ConsoleBankC-\bank\bin\Debug\net8.0\bank.dll
+C:\TOM\CODE\GITHUB\repo\ConsoleBankC-\bank\bin\Debug\net8.0\bank.pdb
+C:\TOM\CODE\GITHUB\repo\ConsoleBankC-\bank\obj\Debug\net8.0\bank.GeneratedMSBuildEditorConfig.editorconfig
+C:\TOM\CODE\GITHUB\repo\ConsoleBankC-\bank\obj\Debug\net8.0\bank.AssemblyInfoInputs.cache
+C:\TOM\CODE\GITHUB\repo\ConsoleBankC-\bank\obj\Debug\net8.0\bank.AssemblyInfo.cs
+C:\TOM\CODE\GITHUB\repo\ConsoleBankC-\bank\obj\Debug\net8.0\bank.csproj.CoreCompileInputs.cache
+C:\TOM\CODE\GITHUB\repo\ConsoleBankC-\bank\obj\Debug\net8.0\bank.sourcelink.json
+C:\TOM\CODE\GITHUB\repo\ConsoleBankC-\bank\obj\Debug\net8.0\bank.dll
+C:\TOM\CODE\GITHUB\repo\ConsoleBankC-\bank\obj\Debug\net8.0\refint\bank.dll
+C:\TOM\CODE\GITHUB\repo\ConsoleBankC-\bank\obj\Debug\net8.0\bank.pdb
+C:\TOM\CODE\GITHUB\repo\ConsoleBankC-\bank\obj\Debug\net8.0\bank.genruntimeconfig.cache
+C:\TOM\CODE\GITHUB\repo\ConsoleBankC-\bank\obj\Debug\net8.0\ref\bank.dll
