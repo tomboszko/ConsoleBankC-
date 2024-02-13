@@ -1,0 +1,5 @@
+C:\TOM\CODE\GITHUB\repo\ConsoleBankC-\bank\bin\Release\net8.0\win-x64\publish\bank.exe
+C:\TOM\CODE\GITHUB\repo\ConsoleBankC-\bank\bin\Release\net8.0\win-x64\publish\bank.dll
+C:\TOM\CODE\GITHUB\repo\ConsoleBankC-\bank\bin\Release\net8.0\win-x64\publish\bank.deps.json
+C:\TOM\CODE\GITHUB\repo\ConsoleBankC-\bank\bin\Release\net8.0\win-x64\publish\bank.runtimeconfig.json
+C:\TOM\CODE\GITHUB\repo\ConsoleBankC-\bank\bin\Release\net8.0\win-x64\publish\bank.pdb

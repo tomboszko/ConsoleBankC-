@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\tom\\code\\github\\repo\\ConsoleBankC-\\bank\\bank.csproj",
+      "projectUniqueName": "C:\\TOM\\CODE\\GITHUB\\repo\\ConsoleBankC-\\bank\\bank.csproj",
       "projectName": "bank",
-      "projectPath": "C:\\tom\\code\\github\\repo\\ConsoleBankC-\\bank\\bank.csproj",
+      "projectPath": "C:\\TOM\\CODE\\GITHUB\\repo\\ConsoleBankC-\\bank\\bank.csproj",
       "packagesPath": "C:\\Users\\Clara & Gabriel\\.nuget\\packages\\",
-      "outputPath": "C:\\tom\\code\\github\\repo\\ConsoleBankC-\\bank\\obj\\",
+      "outputPath": "C:\\TOM\\CODE\\GITHUB\\repo\\ConsoleBankC-\\bank\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\Clara & Gabriel\\AppData\\Roaming\\NuGet\\NuGet.Config"

@@ -26,10 +26,11 @@ public class BankAccount
     public decimal Balance { get; private set; }
     public string Type { get; set; }
 
-    public BankAccount(Client client, string type)
+    public BankAccount(Client client, string type, decimal startingBalance)
     {
         Client = client;
         Type = type;
+        Balance = startingBalance;
     }
 
     private bool VerifyPin(int inputPin)
@@ -78,15 +79,14 @@ class Program
     static void Main(string[] args)
     {
         Client client = new Client(1, "Boszko", "Tom", new DateTime(1982, 7, 3), 1234, DateTime.Now);
-        BankAccount bankAccount = new BankAccount(client, "Savings");
+        BankAccount bankAccount = new BankAccount(client, "Savings", 1000);
 
         Console.WriteLine("Please enter your PIN to access your account:");
         int inputPin = ReadPin();
 
         try
         {
-            bankAccount.CheckBalance(inputPin); // Juste pour vérifier le PIN
-            Console.WriteLine("\nPIN verified.");
+            Console.WriteLine($"Current Balance: {bankAccount.CheckBalance(inputPin)}");
 
             string action;
             do
@@ -133,7 +133,7 @@ class Program
         }
         catch (Exception ex)
         {
-            Console.WriteLine("\nAn error occurred: " + ex.Message);
+            Console.WriteLine($"An error occurred: {ex.Message}");
         }
     }
 
@@ -144,20 +144,31 @@ class Program
 
         do
         {
-            key = Console.ReadKey(true); //true = pas affiché
+            key = Console.ReadKey(true); // true = do not display the character
 
             if (key.Key == ConsoleKey.Backspace && pin.Length > 0)
             {
-                pin = pin[0..^1]; 
-                Console.Write("\b \b"); 
+                pin = pin[0..^1];
+                Console.Write("\b \b");
             }
-            else if (key.Key != ConsoleKey.Enter)
+            else if (key.Key == ConsoleKey.Enter)
+            {
+                if (pin.Length > 0)
+                {
+                    Console.WriteLine(); // Move to the next line after pressing Enter
+                    break; // Exit the loop when Enter key is pressed
+                }
+            }
+            else if (char.IsDigit(key.KeyChar))
             {
                 pin += key.KeyChar;
                 Console.Write("*");
             }
-        } while (key.Key != ConsoleKey.Enter);
+            // Ignore any key input that is not a digit or a relevant control key (Backspace or Enter)
+        } while (true);
 
-        return int.TryParse(pin, out int pinNumber) ? pinNumber : 0;
+        return int.TryParse(pin, out int pinNumber) ? pinNumber : throw new InvalidOperationException("PIN must be numeric.");
+   
+
     }
 }
