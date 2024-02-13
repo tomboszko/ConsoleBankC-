@@ -18,15 +18,6 @@ public class Client
         PinCode = pinCode;
         DateJoined = dateJoined;
     }
-
-    public void UpdateInfo(string lastName, string firstName, DateTime dateOfBirth, int pinCode)
-{
-    LastName = lastName;
-    FirstName = firstName;
-    DateOfBirth = dateOfBirth;
-    PinCode = pinCode; // 
-}
-
 }
 
 public class BankAccount
@@ -85,72 +76,88 @@ public class BankAccount
 class Program
 {
     static void Main(string[] args)
-{
-    Client client = new Client(1, "Doe", "John", new DateTime(1980, 1, 1), 1234, DateTime.Now);
-    BankAccount bankAccount = new BankAccount(client, "Savings");
-
-    Console.WriteLine("Please enter your PIN to access your account:");
-    int inputPin = Convert.ToInt32(Console.ReadLine());
-
-    try
     {
-        if (bankAccount.CheckBalance(inputPin) >= 0) // Juste pour vérifier le PIN
-        {
-            Console.WriteLine("PIN verified.");
-        }
+        Client client = new Client(1, "Doe", "John", new DateTime(1980, 1, 1), 1234, DateTime.Now);
+        BankAccount bankAccount = new BankAccount(client, "Savings");
 
-        string action;
+        Console.WriteLine("Please enter your PIN to access your account:");
+        int inputPin = ReadPin();
+
+        try
+        {
+            bankAccount.CheckBalance(inputPin); // Juste pour vérifier le PIN
+            Console.WriteLine("\nPIN verified.");
+
+            string action;
+            do
+            {
+                Console.WriteLine("What would you like to do? (deposit, withdraw, info, quit):");
+                action = Console.ReadLine().ToLower();
+
+                switch (action)
+                {
+                    case "deposit":
+                        Console.WriteLine("Enter amount to deposit:");
+                        decimal depositAmount = Convert.ToDecimal(Console.ReadLine());
+                        bankAccount.Deposit(depositAmount);
+                        Console.WriteLine($"New balance: {bankAccount.CheckBalance(inputPin)}");
+                        break;
+                    case "withdraw":
+                        Console.WriteLine("Enter amount to withdraw:");
+                        decimal withdrawAmount = Convert.ToDecimal(Console.ReadLine());
+                        if (bankAccount.Withdraw(withdrawAmount, inputPin))
+                        {
+                            Console.WriteLine($"New balance: {bankAccount.CheckBalance(inputPin)}");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Insufficient funds.");
+                        }
+                        break;
+                    case "info":
+                        Console.WriteLine($"Client Information:");
+                        Console.WriteLine($"Name: {client.FirstName} {client.LastName}");
+                        Console.WriteLine($"Date of Birth: {client.DateOfBirth.ToShortDateString()}");
+                        Console.WriteLine($"Account Type: {bankAccount.Type}");
+                        Console.WriteLine($"Current Balance: {bankAccount.CheckBalance(inputPin)}");
+                        break;
+                    case "quit":
+                        Console.WriteLine("Exiting.");
+                        break;
+                    default:
+                        Console.WriteLine("Invalid option. Please choose deposit, withdraw, info, or quit.");
+                        break;
+                }
+            }
+            while (action != "quit");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine("\nAn error occurred: " + ex.Message);
+        }
+    }
+
+    static int ReadPin()
+    {
+        string pin = "";
+        ConsoleKeyInfo key;
+
         do
         {
-            Console.WriteLine("What would you like to do? (deposit, withdraw, info, quit):");
-            action = Console.ReadLine().ToLower();
+            key = Console.ReadKey(true); //true = pas affiché
 
-            switch (action)
+            if (key.Key == ConsoleKey.Backspace && pin.Length > 0)
             {
-                case "deposit":
-                    Console.WriteLine("Enter amount to deposit:");
-                    decimal depositAmount = Convert.ToDecimal(Console.ReadLine());
-                    bankAccount.Deposit(depositAmount);
-                    Console.WriteLine($"New balance: {bankAccount.CheckBalance(inputPin)}");
-                    break;
-                case "withdraw":
-                    Console.WriteLine("Enter amount to withdraw:");
-                    decimal withdrawAmount = Convert.ToDecimal(Console.ReadLine());
-                    if (bankAccount.Withdraw(withdrawAmount, inputPin))
-                    {
-                        Console.WriteLine($"New balance: {bankAccount.CheckBalance(inputPin)}");
-                    }
-                    else
-                    {
-                        Console.WriteLine("Insufficient funds.");
-                    }
-                    break;
-                case "info":
-                    Console.WriteLine("Enter your last name:");
-                    string lastName = Console.ReadLine();
-                    Console.WriteLine("Enter your first name:");
-                    string firstName = Console.ReadLine();
-                    Console.WriteLine("Enter your date of birth (YYYY-MM-DD):");
-                    DateTime dateOfBirth = DateTime.Parse(Console.ReadLine());
-                    Console.WriteLine("Enter a new PIN (or old one to keep it):");
-                    int newPin = Convert.ToInt32(Console.ReadLine());
-
-                    client.UpdateInfo(lastName, firstName, dateOfBirth, newPin);
-                    Console.WriteLine("Information updated successfully.");
-                    break;
-                case "quit":
-                    Console.WriteLine("Exiting.");
-                    break;
-                default:
-                    Console.WriteLine("Invalid option. Please choose deposit, withdraw, info, or quit.");
-                    break;
+                pin = pin[0..^1]; 
+                Console.Write("\b \b"); 
             }
-        }
-        while (action != "quit");
+            else if (key.Key != ConsoleKey.Enter)
+            {
+                pin += key.KeyChar;
+                Console.Write("*");
+            }
+        } while (key.Key != ConsoleKey.Enter);
+
+        return int.TryParse(pin, out int pinNumber) ? pinNumber : 0;
     }
-    catch (Exception ex)
-    {
-        Console.WriteLine("An error occurred: " + ex.Message);
-    }
-}
 }
