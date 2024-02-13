@@ -77,7 +77,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        Client client = new Client(1, "Doe", "John", new DateTime(1980, 1, 1), 1234, DateTime.Now);
+        Client client = new Client(1, "Boszko", "Tom", new DateTime(1982, 7, 3), 1234, DateTime.Now);
         BankAccount bankAccount = new BankAccount(client, "Savings");
 
         Console.WriteLine("Please enter your PIN to access your account:");
